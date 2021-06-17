@@ -21,7 +21,7 @@ ADD https://aka.ms/vs/19/release/vs_buildtools.exe C:\TEMP\vs_buildtools.exe
 RUN C:\TEMP\Install.cmd C:\TEMP\vs_buildtools.exe --quiet --wait --norestart --nocache `
     --channelUri C:\TEMP\VisualStudio.chman `
     --installChannelUri C:\TEMP\VisualStudio.chman `
-    --add Microsoft.VisualStudio.Workload.VCTools --includeRecommended`
+    --add Microsoft.VisualStudio.Workload.VCTools --includeRecommended `
     --installPath C:\BuildTools
 
 # Use developer command prompt and start PowerShell if no other command specified.
