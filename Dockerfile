@@ -6,7 +6,7 @@ SHELL ["cmd", "/S", "/C"]
 
 # Set up environment to collect install errors.
 CMD ["cmd.exe"]
-COPY Install.cmd C:\TEMP\
+COPY Install.cmd C:\TEMP\\ 
 ADD https://aka.ms/vscollect.exe C:\TEMP\collect.exe
 
 # Install Node.js LTS
