@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: win32cpp
+  labels:
+    app: win32cpp
+spec:
+  replicas: 10
+  template:
+    metadata:
+      name: win32cpp
+      labels:
+        app: win32cpp
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": windows
+      containers:
+      - name: win32cpp
+        image: sin3point14/win32cpp:latest
+        resources:
+          limits:
+            cpu: 1
+            memory: 800M
+          requests:
+            cpu: .1
+            memory: 300M
+  selector:
+    matchLabels:
+      app: win32cpp

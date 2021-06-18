@@ -1,0 +1,1 @@
+docker run -v C:\Users\sin3point14\DockerWin32Cpp:c:\DockerWin32Cpp --name DockerWin32Cpp buildtools2019win32cpp
