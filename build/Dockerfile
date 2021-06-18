@@ -1,7 +1,7 @@
 # mount project directory to c:\project
 
 ARG FROM_IMAGE=mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019
-FROM ${FROM_IMAGE} as win32cpp-build
+FROM ${FROM_IMAGE}
 
 # Reset the shell.
 SHELL ["cmd", "/S", "/C"]
