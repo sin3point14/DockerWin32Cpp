@@ -1,5 +1,7 @@
+# mount project directory to c:\project
+
 ARG FROM_IMAGE=mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019
-FROM ${FROM_IMAGE}
+FROM ${FROM_IMAGE} as win32cpp-build
 
 # Reset the shell.
 SHELL ["cmd", "/S", "/C"]
@@ -22,13 +24,7 @@ RUN C:\\TEMP\Install.cmd C:\\TEMP\vs_buildtools.exe --quiet --wait --norestart -
     --add Microsoft.VisualStudio.Workload.VCTools --includeRecommended \
     --installPath C:\\BuildTools
 
-RUN mkdir C:\\project
-COPY . C:\\project
+# RUN mkdir C:\\project
+# COPY . C:\\project
 
 RUN "C:\\BuildTools\\Common7\\Tools\\VsDevCmd.bat" && msbuild c:\\project\\DockerWin32Cpp.sln /p:Configuration=Release /p:Platform=x64
-
-FROM mcr.microsoft.com/windows/servercore:ltsc2019
-ADD https://aka.ms/vs/16/release/vc_redist.x64.exe C:\\TEMP\\vc_redist.x64.exe
-RUN start /w C:\\TEMP\\vc_redist.x64.exe /install /quiet /norestart
-COPY x64\\Release\\DockerWin32Cpp.exe C:\\binary.exe
-CMD ["C:\\binary.exe"]
